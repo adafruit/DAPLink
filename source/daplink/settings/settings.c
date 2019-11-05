@@ -48,14 +48,14 @@ typedef struct __attribute__((__packed__)) cfg_ram {
     char assert_file_name[64 + 1];
     uint16_t assert_line;
     uint8_t assert_source;
-    
+
     // Additional debug information on faults
     uint8_t  valid_dumps;
     uint32_t hexdump[ALLOWED_HEXDUMP];  //Alignments checked
-    
+
     // Disable msd support
     uint8_t disable_msd;
-    
+
     //Add new entries from here
 
 } cfg_ram_t;
@@ -64,7 +64,7 @@ typedef struct __attribute__((__packed__)) cfg_ram {
 COMPILER_ASSERT((offsetof(cfg_ram_t, hexdump) % sizeof(uint32_t)) == 0);
 
 // Configuration RAM
-static cfg_ram_t config_ram __attribute__((section("cfgram"), zero_init));
+static cfg_ram_t config_ram __attribute__((section("cfgram")));
 // Ram copy of RAM config
 static cfg_ram_t config_ram_copy;
 
