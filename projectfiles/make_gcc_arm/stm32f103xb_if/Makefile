@@ -308,7 +308,7 @@ endif
 flash: $(TARGET_HEX)
 	@echo halt > $(OUT_DIR)/flash.jlink
 	@echo r > $(OUT_DIR)/flash.jlink
-	@echo loadfile $(OBJ_FOLDER)$(TARGET)_crc.hex >> $(OUT_DIR)/flash.jlink
+	@echo loadfile $^ >> $(OUT_DIR)/flash.jlink
 	@echo r >> $(OUT_DIR)/flash.jlink
 	@echo go >> $(OUT_DIR)/flash.jlink
 	@echo exit >> $(OUT_DIR)/flash.jlink
