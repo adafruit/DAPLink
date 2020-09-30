@@ -70,7 +70,11 @@ void sdk_init()
     RCC_OscInitStruct.HSEState = RCC_CR_HSEON;
     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+#ifdef USE_GD32
+    RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV2;
+#else
     RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+#endif
     RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
         /* Initialization Error */

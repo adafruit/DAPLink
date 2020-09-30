@@ -1,6 +1,6 @@
 # Private settings
 private_settings.py
-projectfiles
+projectfiles/make_gcc_arm/*/build
 
 # Compiled Object files
 *.slo

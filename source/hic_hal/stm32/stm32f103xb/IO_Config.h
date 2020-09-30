@@ -37,24 +37,55 @@ COMPILER_ASSERT(DAPLINK_HIC_ID == DAPLINK_HIC_ID_STM32F103XB);
 #define USB_CONNECT_OFF()            (USB_CONNECT_PORT->BRR  = USB_CONNECT_PIN)
 
 //Connected LED
+#ifdef USE_GD32
 #define CONNECTED_LED_PORT           GPIOB
 #define CONNECTED_LED_PIN            GPIO_PIN_6
 #define CONNECTED_LED_PIN_Bit        6
+
+#else
+#define CONNECTED_LED_PORT           GPIOD
+#define CONNECTED_LED_PIN            GPIO_PIN_2
+#define CONNECTED_LED_PIN_Bit        2
+
+#endif
+
 
 //When bootloader, disable the target port(not used)
 #define POWER_EN_PIN_PORT            GPIOB
 #define POWER_EN_PIN                 GPIO_PIN_15
 #define POWER_EN_Bit                 15
 
-// RESET In Pin
-#define RESET_IN_PIN_PORT            GPIOB
-#define RESET_IN_PIN                 GPIO_PIN_7
-#define RESET_IN_PIN_Bit             7
+#if 0
+// nRESET OUT Pin of SWD
+#define nRESET_PIN_PORT              GPIOB
+#define nRESET_PIN                   GPIO_PIN_0
+#define nRESET_PIN_Bit               0
+#endif
+
+#ifdef USE_GD32
+// Reset Button Pin
+#define RESET_BTN_PIN_PORT           GPIOB
+#define RESET_BTN_PIN                GPIO_PIN_7
+#define RESET_BTN_PIN_Bit            7
 
 // nRESET OUT Pin of SWD
-#define nRESET_PIN_PORT              GPIOA
-#define nRESET_PIN                   GPIO_PIN_4 // GPIO_PIN_0
-#define nRESET_PIN_Bit               4 // 0
+#define nRESET_PIN_PORT              GPIOB
+#define nRESET_PIN                   GPIO_PIN_0
+#define nRESET_PIN_Bit               4
+
+#else
+
+// Reset Button Pin
+#define RESET_BTN_PIN_PORT           GPIOC
+#define RESET_BTN_PIN                GPIO_PIN_1
+#define RESET_BTN_PIN_Bit            1
+
+// nRESET OUT Pin of SWD
+#define nRESET_PIN_PORT              GPIOB
+#define nRESET_PIN                   GPIO_PIN_0
+#define nRESET_PIN_Bit               4
+
+#endif
 
 //SWD
 #define SWCLK_TCK_PIN_PORT           GPIOB
@@ -87,7 +118,9 @@ COMPILER_ASSERT(DAPLINK_HIC_ID == DAPLINK_HIC_ID_STM32F103XB);
 #define PIN_MSC_LED_PORT             GPIOA
 #define PIN_MSC_LED                  GPIO_PIN_9
 #define PIN_MSC_LED_Bit              9
-#else
+#endif
+
+#ifdef USE_GD32
 
 #define RUNNING_LED_PORT             GPIOB
 #define RUNNING_LED_PIN              GPIO_PIN_6
@@ -104,6 +137,24 @@ COMPILER_ASSERT(DAPLINK_HIC_ID == DAPLINK_HIC_ID_STM32F103XB);
 #define PIN_MSC_LED_PORT             GPIOB
 #define PIN_MSC_LED                  GPIO_PIN_6
 #define PIN_MSC_LED_Bit              6
+
+#else
+
+#define RUNNING_LED_PORT             GPIOA
+#define RUNNING_LED_PIN              GPIO_PIN_8
+#define RUNNING_LED_Bit              8
+
+#define PIN_HID_LED_PORT             GPIOA
+#define PIN_HID_LED                  GPIO_PIN_8
+#define PIN_HID_LED_Bit              8
+
+#define PIN_CDC_LED_PORT             GPIOA
+#define PIN_CDC_LED                  GPIO_PIN_8
+#define PIN_CDC_LED_Bit              8
+
+#define PIN_MSC_LED_PORT             GPIOA
+#define PIN_MSC_LED                  GPIO_PIN_8
+#define PIN_MSC_LED_Bit              8
 
 #endif
 

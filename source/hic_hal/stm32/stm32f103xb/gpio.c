@@ -159,11 +159,11 @@ void gpio_init(void)
     HAL_GPIO_Init(PIN_MSC_LED_PORT, &GPIO_InitStructure);
 
     // reset button configured as gpio input pullup
-    HAL_GPIO_WritePin(RESET_IN_PIN_PORT, RESET_IN_PIN, GPIO_PIN_SET);
-    GPIO_InitStructure.Pin = RESET_IN_PIN;
+    HAL_GPIO_WritePin(RESET_BTN_PIN_PORT, RESET_BTN_PIN, GPIO_PIN_SET);
+    GPIO_InitStructure.Pin = RESET_BTN_PIN;
     GPIO_InitStructure.Mode = GPIO_MODE_INPUT;
     GPIO_InitStructure.Pull = GPIO_PULLUP;
-    HAL_GPIO_Init(RESET_IN_PIN_PORT, &GPIO_InitStructure);
+    HAL_GPIO_Init(RESET_BTN_PIN_PORT, &GPIO_InitStructure);
 
     // reset configured as gpio open drain output with a pullup
     HAL_GPIO_WritePin(nRESET_PIN_PORT, nRESET_PIN, GPIO_PIN_SET);
@@ -216,12 +216,12 @@ void gpio_set_msc_led(gpio_led_state_t state)
 
 uint8_t gpio_get_reset_btn_no_fwrd(void)
 {
-    return (RESET_IN_PIN_PORT->IDR & RESET_IN_PIN) ? 0 : 1;
+    return (RESET_BTN_PIN_PORT->IDR & RESET_BTN_PIN) ? 0 : 1;
 }
 
 uint8_t gpio_get_reset_btn_fwrd(void)
 {
-    return (RESET_IN_PIN_PORT->IDR & RESET_IN_PIN) ? 0 : 1;
+    return (RESET_BTN_PIN_PORT->IDR & RESET_BTN_PIN) ? 0 : 1;
 }
 
 
